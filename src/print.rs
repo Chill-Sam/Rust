@@ -1,4 +1,5 @@
-pub fn run() {
+pub fn run() 
+{
     // Prints the line "Hello world!"
     println!("Hello world!");
 
