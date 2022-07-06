@@ -2,3 +2,5 @@
 00-tutorial/target/
 00-tutorial/Cargo.toml
 01-calculator/Cargo.toml
+02-meritscore/target/
+02-meritscore/Cargo.toml
