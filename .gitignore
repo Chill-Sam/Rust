@@ -1,6 +1,8 @@
 01-calculator/target/
 00-tutorial/target/
-00-tutorial/Cargo.toml
-01-calculator/Cargo.toml
+00-tutorial/Cargo.lock
+01-calculator/Cargo.lock
 02-meritscore/target/
-02-meritscore/Cargo.toml
+02-meritscore/Cargo.lock
+03-magic-eight-ball/target/
+03-magic-eight-ball/Cargo.lock
