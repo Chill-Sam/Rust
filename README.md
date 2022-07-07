@@ -4,4 +4,4 @@ All of my rust projects from total beginner to more advanced fully open source.
 
 01-calculator : calculator program that does addition, subtraction, multiplication and subtraction : Finished
 
-02-meritscore : PERSONAL meritscore calculator (Not to be used by others) : Finished 
+02-meritscore : PERSONAL meritscore calculator (Not designed to be used by others) : Finished 
