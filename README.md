@@ -13,3 +13,9 @@ All of my rust projects from total beginner to more advanced fully open source.
 05-currency : Currency converter between SEK and EUR : Finished
 
 06-topdown-triangle : prints a triangle from a value : Finished
+
+07-bottomup-triangle : prints a triangle from a value : Finished
+
+08-odd-triangle : prints a triangle with only odd rows : Finished
+
+09-random-func : runs a random function : Finished
