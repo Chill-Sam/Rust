@@ -5,32 +5,36 @@
 
 use std::io;
 
+// Constants for conversion
 const SEK_TO_EUR: f64 = 0.0935;
 const EUR_TO_SEK: f64 = 10.6882;
 
+// Main function
 fn main() 
 {
-    // println! ( "SEK_TO_EUR: {}, EUR_TO_SEK: {}", SEK_TO_EUR, EUR_TO_SEK );
-
+    // Display options
     println! ( "Choose an option. (type number to begin):" );
     println! ( "(1) - SEK to euros" );
     println! ( "(2) - Euros to SEK" );
 
+    // Get input
     let mut choice_input: String = String::new();
     io::stdin()
         .read_line(&mut choice_input)
         .expect("Could not read from stdin");
-    
-    // println! ( "Input: {}", input );
 
+    // parse to u8
     let choice: u8 = choice_input
         .trim()
         .parse()
         .expect("Input number too large (non-negative 8-bit integer)");
-    
+
+    // Variables for choice
     let type_of_currency: &str;
     let symbol_of_currency: String;
-    let converted_symbol: String;  
+    let converted_symbol: String;
+    
+    // Match statement to check choice  
     match choice
     {
         1 => { println! ( "Enter amount in SEK" ); type_of_currency = "SEK"; symbol_of_currency = String::from("kr"); converted_symbol = String::from("€"); }
@@ -38,18 +42,21 @@ fn main()
         _ => panic! ( "Not a valid input. (1, 2)" ),
     }
 
-    // println! ( "type_of_currency: {}, symbol_of_currency: {}, converted_symbol: {}", type_of_currency, symbol_of_currency, converted_symbol );
-
+    // Get input for amount
     let mut amount_input: String = String::new();
     io::stdin()
         .read_line(&mut amount_input)
         .expect("Could not read from stdin");
+    
+    // Parse to f64 
     let amount: f64 = amount_input
         .trim()
         .parse()
         .expect("Not a valid amount (64-bit float)");
-    if amount.is_sign_negative() {panic! ( "Not a valid amount (non-negative number)" ); }
 
+    if amount.is_sign_negative() {panic! ( "Not a valid amount (non-negative number)" ); } // Gaurd clause for negative numbers 
+
+    // Prints result depending on type_of_currency
     match type_of_currency
     {
         "SEK" => {println! ("{} {} is {}{}", amount, symbol_of_currency, converted_symbol, convert(amount, &type_of_currency)); }
@@ -58,8 +65,10 @@ fn main()
     }
 }
 
+// Conversion function
 fn convert(amount: f64, type_of_currency: &str) -> f64
 {
+    // Returns answer truncated to 2 decimals depending on type_of_currency
     match type_of_currency
     {
         "SEK" => return f64::trunc(amount * SEK_TO_EUR * 100.0) / 100.0,
