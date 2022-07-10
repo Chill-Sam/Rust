@@ -8,3 +8,5 @@
 03-magic-eight-ball/Cargo.lock
 04-factorial/target/
 04-factorial/Cargo.lock
+05-currency/target/
+05-currency/Cargo.lock
