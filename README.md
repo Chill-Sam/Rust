@@ -6,6 +6,8 @@ XX-meritscore : PERSONAL meritscore calculator (Not designed to be used by other
 
 XX-magic-eight-ball : Magic eight ball that returns an answer to a question. : Finished
 
+(Project Ideas from https://github.com/whostolemyhat/learning-projects)
+
 01-factorial : Returns factorial of input : Finished
 
 02-currency : Currency converter between SEK and EUR : Finished
@@ -21,3 +23,5 @@ XX-magic-eight-ball : Magic eight ball that returns an answer to a question. : F
 07-guessing-game : A game of higher and lower : Finished
 
 14-calculator : calculator program that does addition, subtraction, multiplication and subtraction : Finished
+
+(End of https://github.com/whostolemyhat/learning-projects)
