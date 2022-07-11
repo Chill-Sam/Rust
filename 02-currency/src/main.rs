@@ -10,58 +10,99 @@ const SEK_TO_EUR: f64 = 0.0935;
 const EUR_TO_SEK: f64 = 10.6882;
 
 // Main function
-fn main() 
+fn main()
 {
-    // Display options
-    println! ( "Choose an option. (type number to begin):" );
-    println! ( "(1) - SEK to euros" );
-    println! ( "(2) - Euros to SEK" );
-
-    // Get input
-    let mut choice_input: String = String::new();
-    io::stdin()
-        .read_line(&mut choice_input)
-        .expect("Could not read from stdin");
-
-    // parse to u8
-    let choice: u8 = choice_input
-        .trim()
-        .parse()
-        .expect("Input number too large (non-negative 8-bit integer)");
-
-    // Variables for choice
-    let type_of_currency: &str;
-    let symbol_of_currency: String;
-    let converted_symbol: String;
-    
-    // Match statement to check choice  
-    match choice
+    print!("{esc}c", esc = 27 as char);
+    loop 
     {
-        1 => { println! ( "Enter amount in SEK" ); type_of_currency = "SEK"; symbol_of_currency = String::from("kr"); converted_symbol = String::from("€"); }
-        2 => { println! ( "Enter amount in Euro" ); type_of_currency = "EUR"; symbol_of_currency = String::from("€"); converted_symbol = String::from("kr"); }
-        _ => panic! ( "Not a valid input. (1, 2)" ),
-    }
+        // Display options
+        println! ( "Choose an option. (X to exit):" );
+        println! ( "(1) - SEK to euros" );
+        println! ( "(2) - Euros to SEK" );
+        
+        // Get input
+        let mut choice_input: String = String::new();
+        io::stdin()
+            .read_line(&mut choice_input)
+            .expect("Failed to read input.");
 
-    // Get input for amount
-    let mut amount_input: String = String::new();
-    io::stdin()
-        .read_line(&mut amount_input)
-        .expect("Could not read from stdin");
-    
-    // Parse to f64 
-    let amount: f64 = amount_input
-        .trim()
-        .parse()
-        .expect("Not a valid amount (64-bit float)");
+        // Variables for choice
+        let type_of_currency: &str;
+        let symbol_of_currency: String;
+        let converted_symbol: String;
 
-    if amount.is_sign_negative() {panic! ( "Not a valid amount (non-negative number)" ); } // Gaurd clause for negative numbers 
+        match choice_input.as_str()
+        {
+            "X\n" => 
+            {
+                print!("{esc}c", esc = 27 as char);
+                return;
+            }
+            _ => ()
+        }
 
-    // Prints result depending on type_of_currency
-    match type_of_currency
-    {
-        "SEK" => {println! ("{} {} is {}{}", amount, symbol_of_currency, converted_symbol, convert(amount, &type_of_currency)); }
-        "EUR" => {println! ("{}{} is {} {}", symbol_of_currency, amount, convert(amount, &type_of_currency), converted_symbol); }
-        _ => panic! ( "A fatal error has occured." ),
+        // parse to u8 with match statement
+        match choice_input.trim().parse::<u8>() {
+            Ok(choice) => {
+                // Match statement to check choice  
+                match choice {
+                    1 => {
+                        print!("{esc}c", esc = 27 as char);
+                        println!( "Enter amount in SEK" );
+                        type_of_currency = "SEK";
+                        symbol_of_currency = String::from("kr");
+                        converted_symbol = String::from("€");
+                        choice
+                    }
+                    2 => {
+                        print!("{esc}c", esc = 27 as char);
+                        println!( "Enter amount in Euro" );
+                        type_of_currency = "EUR";
+                        symbol_of_currency = String::from("€");
+                        converted_symbol = String::from("kr");
+                        choice
+                    }
+                    
+                    _ => {println!( "Input is not valid." ); print!("{esc}c", esc = 27 as char); continue}, // Invalid input
+                }
+            }
+            Err(_) => {println!( "Input is not valid." ); print!("{esc}c", esc = 27 as char); continue}, // Invalid input
+        };
+
+        // Get input for amount
+        let mut amount_input: String = String::new();
+        io::stdin()
+            .read_line(&mut amount_input)
+            .expect("Failed to read input.");
+
+        match amount_input.trim().parse::<f64>()
+        {
+            Ok(amount) => 
+            {
+                match amount 
+                {
+                    x if x > 0.0 =>
+                    {
+                        match type_of_currency 
+                        {
+                            "SEK" => 
+                            {
+                                print!("{esc}c", esc = 27 as char);
+                                println! ("{} {} is {}{}\n", amount, symbol_of_currency, converted_symbol, convert(amount, &type_of_currency)); 
+                            }
+                            "EUR" => 
+                            {
+                                print!("{esc}c", esc = 27 as char);
+                                println! ("{}{} is {} {}\n", symbol_of_currency, amount, convert(amount, &type_of_currency), converted_symbol); 
+                            }
+                            _ => panic! ( "A fatal error has occured." ),
+                        }
+                    }
+                    _ => {println!( "Input is not valid." ); print!("{esc}c", esc = 27 as char); continue},
+                } 
+            }
+            Err(_) => {println!( "Failed to parse to f64." ); print!("{esc}c", esc = 27 as char); continue},
+        };
     }
 }
 

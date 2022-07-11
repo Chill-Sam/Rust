@@ -1,0 +1,17 @@
+Invalid input:
+    Input is not valid.
+
+Too large input:
+    Input is too large.
+
+Too small input:
+    Input is too small.
+
+Failed to parse:
+    Failed to parse to <value>.
+
+Input failure:
+    Failed to read input.
+
+Unexpected error:
+    A fatal error has occured.
