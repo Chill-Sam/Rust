@@ -19,7 +19,6 @@ fn main()
 fn reverse(x: Vec<char>) -> Vec<char>
 {
     let mut reverse_x: Vec<char> = Vec::new();
-    let i: usize = 0;
 
     for i in 0..x.len()
     {
